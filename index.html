@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preloader bar</title>
+
+   <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main-bootsrap-replace.css" rel="stylesheet">
+    <link href="css/main-style.css" rel="stylesheet">
+    
+     
+     
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+      
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-2.1.1.min.js"></script>  
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+         
+   
+  </head>
+  <body>
+
+    <div class="hidden">
+        <script type="text/javascript">
+                
+        var total_bar_width=400;// preload bar background white area width
+        $("#total-bar").css("width",total_bar_width);		
+                
+        var img_to_load = [
+            "images/1.jpg",
+            "images/2.jpg",
+            "images/3.jpg",
+            "images/4.jpg",
+            "images/5.jpg"
+         ];
+        var loaded_images = 0;
+        
+        for (var i=0; i<img_to_load.length; i++) {
+            var img = document.createElement('img');
+            img.src = img_to_load[i];
+			img.style.display = 'hidden';
+            img.onload = function () {
+                loaded_images ++;
+                    percentage=100*(loaded_images/img_to_load.length);
+                    console.log(percentage);
+                    var new_width=(total_bar_width*percentage)/100;
+                    $("#current-bar").width(new_width);
+                    if(percentage==100){
+                        $("#preload_area").fadeOut("fast");
+                    }
+            }
+        
+        }		
+                
+            
+        </script>
+    </div><!-- hidden -->
+    
+    
+    
+    <div id="preload_area">
+        <div class="center-wrap-preloader" >
+            <div id="total-bar">
+                <div id="current-bar"></div><!--current-bar -->
+            </div><!-- total-bar-->
+        </div><!-- center-wrap-preloader-->
+    </div><!--   preloader area-->   
+    
+    
+    <section>   
+        <ul id="img-list">
+            <li class="img-box"><img src="images/1.jpg" class="img-responsive"></li>
+           <li class="img-box"><img src="images/2.jpg" class="img-responsive"></li>
+           <li class="img-box"><img src="images/3.jpg" class="img-responsive"></li>
+           <li class="img-box"><img src="images/4.jpg" class="img-responsive"></li>
+           <li class="img-box"><img src="images/5.jpg" class="img-responsive"></li>
+        </ul>
+    </section>
+
+    
+   
+  </body>
+</html>
